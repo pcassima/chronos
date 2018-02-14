@@ -8,14 +8,14 @@
 
 int number = 2017; //the number that we want to display
 
-Chronos chronos; //initialising the library
+Chronos chronos(false); //initialising the library
 
 
 void setup() {
   // put your setup code here, to run once:
   //Setting the brightness of the library to the maximum
   //value
-    chronos.setBrightness(1023);
+    chronos.setBrightness(255);
 }
 
 void loop() {
