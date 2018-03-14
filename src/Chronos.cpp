@@ -266,6 +266,12 @@ float Chronos::getTemp() {
 	*/
 
 	float temp3231;
+  uint8_t temp_msb, temp_lsb;
+  int8_t nint;
+
+
+
+	float temp3231;
 
 	//starting the transmission the the DS3231
 	Wire.beginTransmission(DS3231_ADDRESS);
@@ -274,15 +280,18 @@ float Chronos::getTemp() {
 	//We need to request to bytes from the DS3231
 	Wire.requestFrom(DS3231_ADDRESS, 2);
 
-	if (Wire.available()) {
-		//if we receive "something" from the DS3231
-		//we can read it into two bytes
-		uint8_t tMSB = Wire.read();
-		uint8_t tLSB = Wire.read();
-		//we can now reconstruct the floating point number from
-		//the two bytes.
-		temp3231 = ((((short)tMSB << 8) | (short)tLSB) >> 6) / 4.0;
-		//more information on how this works will follow later
+	temp_msb = Wire.read();
+  temp_lsb = Wire.read() >> 6;
+
+  if ((temp_msb & 0x80) != 0)
+      nint = temp_msb | ~((1 << 8) - 1);      // if negative get two's complement
+  else
+      nint = temp_msb;
+
+  temp3231 = 0.25 * temp_lsb + nint;
+
+	return temp3231;
+
 	}
 
 	else {
