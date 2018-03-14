@@ -269,10 +269,6 @@ float Chronos::getTemp() {
   uint8_t temp_msb, temp_lsb;
   int8_t nint;
 
-
-
-	float temp3231;
-
 	//starting the transmission the the DS3231
 	Wire.beginTransmission(DS3231_ADDRESS);
 	Wire.write(DS3231_MSB_TEMP);
@@ -288,22 +284,10 @@ float Chronos::getTemp() {
   else
       nint = temp_msb;
 
-  temp3231 = 0.25 * temp_lsb + nint;
+  temp3231 = ((0.25 * temp_lsb + nint) - 32) / 1.8;
 
 	return temp3231;
 
-	}
-
-	else {
-		/*
-		If something goes wrong we give an obvious error value;
-		the minimum value on the Celsius scale is -273.15
-		so -999 is an obvious error value
-		*/
-		temp3231 = -999.0;
-	}
-
-	return temp3231;
 }
 
 uint8_t Chronos::getHours() {
