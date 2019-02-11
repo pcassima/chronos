@@ -6,21 +6,21 @@
 # Datatypes (KEYWORD1)
 #######################################
 
-Chronos KEYWORD1
-DateTime KEYWORD1
+Chronos	KEYWORD1
+DateTime	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
 
-Chronos KEYWORD2
-~Chronos KEYWORD2
-writeInt KEYWORD2
-setBrightness KEYWORD2
-showTemp KEYWORD2
-showTime KEYWORD2
-setIntRollOver KEYWORD2
-getTemperature KEYWORD2
+Chronos	KEYWORD2
+~Chronos	KEYWORD2
+writeInt	KEYWORD2
+setBrightness	KEYWORD2
+showTemp	KEYWORD2
+showTime	KEYWORD2
+setIntRollOver	KEYWORD2
+getTemperature	KEYWORD2
 
 #######################################
 # Instances (KEYWORD2)
